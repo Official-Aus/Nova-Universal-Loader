@@ -50,6 +50,70 @@ if game.PlaceId == 17625359962 then --Rivals
             loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20Rivals%20Beta.lua"))
         end,
     })
+
+    local SettingsTab = SettingsWindow:CreateTab("Settings", 4483362458)
+
+    local Section = SettingsTab:CreateSection("Auto Load")
+
+
+    local toggle = SettingsTab:CreateToggle({
+        Name ='Auto Execute'
+        CurrentValue = false,
+        Flag = "AutoExeNovaX"
+        Callback = function(Value)
+            if (Value == true) then
+                Rayfield:Notify({
+                    Title = "Auto execute on",
+                    Content = "Auto execute is on NovaX will load on startup!",
+                    Duration = 4,
+                    Image = 4483362458,
+                })
+                
+                local autoexec_folder = "autoexec"
+                local autoexec_file = autoexec_folder .. "/Nova-Loader.lua"
+
+                if not isfile(file) then
+                    writefile(file, [[
+                    pcall(function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/Official-Aus/Nova-Universal-Loader/refs/heads/main/NovaX%20Loader"))()
+                    end)
+                    ]])
+                end
+            end
+
+            elseif (Value == false) then
+                Rayfeild:Notify({
+                    Title = "Auto execute off",
+                    Content = "Auto execute is off NovaX will not load on startup!",
+                    Duration = 4,
+                })
+            end
+            
+        end
+    })
+
+    local Button = SettingsTab:CreateButton({
+        Name = "Enable",
+        Callback = function()
+            Rayfeild:Notify({
+                Title = "Auto execute on",
+                Content = "Auto execute is on NovaX will load on startup!",
+                Duration = 4,
+                Image = 4483362458,
+            })
+            -- folder + file names
+            local folder = "autoexec"
+            local file = folder .. "/autoload.lua"
+
+            -- write file if missing
+            if not isfile(file) then
+            writefile(file, [[
+            pcall(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/Official-Aus/Nova-Universal-Loader/refs/heads/main/NovaX%20Loader"))()
+            end)
+            ]])
+        end
+    })
 end
 
 if game.PlaceId == 6872265039 then --Bed Wars
